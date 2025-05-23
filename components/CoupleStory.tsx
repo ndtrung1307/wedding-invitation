@@ -1,28 +1,55 @@
+import { Quicksand } from "next/font/google";
+
+const quicksand = Quicksand({
+  subsets: ["vietnamese"],
+  weight: "600",
+  variable: "--font-quicksand",
+});
+
 export default function CoupleStory() {
   return (
-    <section id="story" className="py-16 bg-white">
+    <section
+      id="story"
+      className={"py-16 bg-white" + " " + quicksand.className}
+    >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-semibold text-center mb-8">Our Story</h2>
+        <h2 className="text-3xl font-semibold text-center mb-8">
+          Tụi mình - Một hành trình
+        </h2>
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-gray-700 mb-4">
-            John and Jane's love story began in the halls of their university, where they first met during a computer
-            science study group. What started as a friendship built on shared interests in technology and innovation
-            soon blossomed into a deep and lasting love.
+            Tụi mình quen nhau vì nhà trai lỡ… rep story. Không ngờ từ một cái
+            rep vu vơ mà nên chuyện thật. Sau đó, ảnh tỏ tình đúng 30 Tết – chắc
+            chọn ngày cho dễ nhớ (hoặc để không bị từ chối?).
           </p>
           <p className="text-gray-700 mb-4">
-            As they navigated their college years together, John and Jane's bond grew stronger. They supported each
-            other through late-night coding sessions, celebrated each other's achievements, and dreamed of a future
-            where they could build amazing things together.
+            Từ đó tới giờ:{" "}
+            <b>
+              {(() => {
+                const startDate = new Date(2021, 1, 12); // 08/06/2020
+                const now = new Date();
+                const diffTime = Math.abs(now.getTime() - startDate.getTime());
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                const years = Math.floor(diffDays / 365);
+                const months = Math.floor((diffDays % 365) / 30);
+                const days = diffDays % 30;
+                return `${years} năm, ${months} tháng, ${days} ngày`;
+              })()}{" "}
+            </b>
+            - Đủ lâu để cùng nhau qua bao nhiêu lần cãi nhau vì ăn gì, đi đâu,
+            ai rửa chén. Nhưng cũng đủ để biết: tụi mình chịu được nhau, thương
+            nhau, và muốn đi tiếp… dài dài.
           </p>
+          <p className="text-gray-700 mb-4">
+            Và giờ thì: <b>Tụi mình cưới!</b>
+          </p>
+
           <p className="text-gray-700">
-            After graduation, they embarked on a new adventure, moving to the same city to pursue their careers. Through
-            the ups and downs of starting their professional lives, their love remained a constant source of strength
-            and inspiration. Now, they're ready to take the next step in their journey together, and they can't wait to
-            share this special moment with you.
+            Rất mong được ăn mừng cùng gia đình và những người tụi mình thương
+            quý nhất!
           </p>
         </div>
       </div>
     </section>
-  )
+  );
 }
-

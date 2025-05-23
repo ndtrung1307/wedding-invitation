@@ -5,68 +5,112 @@ import type React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Merriweather } from "next/font/google";
 import { useState } from "react";
+import WishesList from "./WishesList";
+
+const merriweather = Merriweather({
+  subsets: ["vietnamese"],
+  weight: "400",
+});
 
 export default function WishesForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [senderName, setSenderName] = useState("");
+  const [relationship, setRelationship] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically send the form data to your server
-    console.log("Form submitted:", { name, email, message });
+    console.log("Form submitted:", { senderName, relationship, message });
+    try {
+      const res = await fetch(
+        "https://wedding-server-6sge.onrender.com/wishes",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ senderName, relationship, message }),
+        }
+      );
+
+      const data = await res.json();
+      console.log("Wish submitted successfully:", data);
+      alert("Lời chúc của bạn đã được gửi thành công!");
+    } catch (error) {
+      console.error("Error submitting the wish:", error);
+      alert("Có lỗi xảy ra khi gởi lời chúc. Vui lòng thử lại!");
+    }
+
     // Reset form fields
-    setName("");
-    setEmail("");
+    setSenderName("");
+    setRelationship("");
     setMessage("");
-    alert("Thank you for your wishes!");
+    alert("Chúng mình cảm ơn lời chúc phúc của bạn!");
   };
 
   return (
-    <section id="wishes" className="py-16 bg-gray-100">
+    <section
+      id="wishes"
+      className={"py-16 " + merriweather.className}
+      style={{ backgroundColor: "#FAEEEE", color: "#45384B" }}
+    >
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-semibold text-center mb-8">
-          Send Your Wishes
+          Gởi lời chúc đến tụi mình!
         </h2>
         <form onSubmit={handleSubmit} className="max-w-md mx-auto">
           <div className="mb-4">
             <label htmlFor="name" className="block text-gray-700 mb-2">
-              Name
+              Bạn tên là:
             </label>
             <Input
               type="text"
               id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={senderName}
+              onChange={(e) => setSenderName(e.target.value)}
               required
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 mb-2">
-              Email
-            </label>
-            <Input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <div>
+              <label htmlFor="role" className="block text-gray-700 mb-2">
+                Bạn là:
+              </label>
+              <Input
+                type="role"
+                id="role"
+                value={relationship}
+                onChange={(e) => setRelationship(e.target.value)}
+                placeholder="Người thân, bạn bè, đồng nghiệp của cô dâu/ chú rể..."
+                required
+              />
+            </div>
           </div>
           <div className="mb-4">
-            <label htmlFor="message" className="block text-gray-700 mb-2">
-              Your Wishes
+            <label htmlFor="message" className="block mb-2">
+              Lời chúc của bạn:
             </label>
             <Textarea
               id="message"
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={(e) => {
+                if (e.target.value.length <= 300) {
+                  setMessage(e.target.value);
+                }
+              }}
               required
+              placeholder="Chúc tụi mình hạnh phúc, vui vẻ, sức khỏe, thành công..."
             />
+            <p className="text-sm mt-1">{message.length}/300 ký tự</p>
           </div>
-          <Button type="submit" className="w-full">
-            Send Wishes
+          <Button
+            type="submit"
+            className="w-full"
+            style={{ backgroundColor: "#FFAAAA", color: "#45384B" }}
+          >
+            Gởi
           </Button>
         </form>
 
@@ -74,20 +118,7 @@ export default function WishesForm() {
           <h3 className="text-2xl font-semibold text-center mb-4">
             Sổ Lưu Bút
           </h3>
-          <ul className="list-disc list-inside">
-            <li className="mb-2">
-              <strong>John Doe:</strong> Congratulations! Wishing you both a
-              lifetime of love and happiness.
-            </li>
-            <li className="mb-2">
-              <strong>Jane Smith:</strong> So happy for you two! Can't wait to
-              celebrate together.
-            </li>
-            <li className="mb-2">
-              <strong>Emily Johnson:</strong> Your love story is beautiful.
-              Wishing you all the best on your special day!
-            </li>
-          </ul>
+          <WishesList />
         </div>
       </div>
     </section>

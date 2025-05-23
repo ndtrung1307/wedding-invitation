@@ -1,11 +1,15 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
-import { Great_Vibes } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 import Link from "next/link";
 import { useState } from "react";
 
-const greatVibes = Great_Vibes({ subsets: ["vietnamese"], weight: "400" });
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: "600",
+  variable: "--font-cormorant-garamond",
+});
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,19 +21,16 @@ export default function Header() {
       className="shadow-sm fixed top-0 left-0 right-0 z-50"
       style={{ backgroundColor: "#fdfcf6" }}
     >
-      <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link
-          href="/"
-          className={`text-xl sm:text-2xl font-semibold text-gray-800 ${greatVibes.className}`}
-        >
+      <nav className="container mx-auto px-4 flex justify-between items-center">
+        <Link href="/">
           <img src="/wedding-logo.png" alt="" style={{ height: "100px" }} />
         </Link>
         <button onClick={toggleMenu} className="md:hidden">
           {isMenuOpen ? <X /> : <Menu />}
         </button>
         <ul
-          className={`${
-            isMenuOpen ? "flex" : "hidden"
+          className={`${isMenuOpen ? "flex" : "hidden"} ${
+            cormorantGaramond.className
           } md:flex flex-col md:flex-row absolute md:relative top-full left-0 right-0 bg-white md:bg-transparent shadow-md md:shadow-none md:space-x-4 p-4 md:p-0`}
         >
           <li>

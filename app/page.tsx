@@ -1,12 +1,12 @@
-import Header from "@/components/Header"
-import Hero from "@/components/Hero"
-import CoupleStory from "@/components/CoupleStory"
-import Couple from "@/components/Couple"
-import PhotoAlbum from "@/components/PhotoAlbum"
-import Schedule from "@/components/Schedule"
-import LoveStory from "@/components/LoveStory"
-import WishesForm from "@/components/WishesForm"
-import Footer from "@/components/Footer"
+import Couple from "@/components/Couple";
+import CoupleStory from "@/components/CoupleStory";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import LifeAlbum from "@/components/LoveStory";
+import PhotoAlbum from "@/components/PhotoAlbum";
+import Schedule from "@/components/Schedule";
+import WishesForm from "@/components/WishesForm";
 
 export default function Home() {
   return (
@@ -17,10 +17,9 @@ export default function Home() {
       <Couple />
       <PhotoAlbum />
       <Schedule />
-      <LoveStory />
+      <LifeAlbum />
       <WishesForm />
       <Footer />
     </main>
-  )
+  );
 }
-

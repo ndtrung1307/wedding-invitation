@@ -1,71 +1,96 @@
-import Image from "next/image"
+"use client";
 
-const timelineEvents = [
-  {
-    date: "September 2018",
-    title: "First Meeting",
-    description: "We met during a computer science study group at university.",
-    image: "/placeholder.svg?height=200&width=200",
-  },
-  {
-    date: "May 2019",
-    title: "First Date",
-    description: "Our first official date at a local coffee shop.",
-    image: "/placeholder.svg?height=200&width=200",
-  },
-  {
-    date: "December 2020",
-    title: "Graduation",
-    description: "We graduated together and decided to move to the same city.",
-    image: "/placeholder.svg?height=200&width=200",
-  },
-  {
-    date: "July 2022",
-    title: "Moving In",
-    description: "We took the next step and moved in together.",
-    image: "/placeholder.svg?height=200&width=200",
-  },
-  {
-    date: "February 2024",
-    title: "Engagement",
-    description: "John proposed during a romantic hike at sunset.",
-    image: "/placeholder.svg?height=200&width=200",
-  },
-]
+import LightGallery from "lightgallery/react";
+import Image from "next/image";
 
-export default function LoveStory() {
+// Plugins
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
+
+// Styles (rất quan trọng)
+import "lightgallery/css/lg-thumbnail.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lightgallery.css";
+import { Merriweather } from "next/font/google";
+
+const merriweather = Merriweather({
+  subsets: ["vietnamese"],
+  weight: "400",
+});
+
+type Photo = {
+  src: string;
+  alt: string;
+  caption?: string;
+  date: string;
+};
+
+const photos: Photo[] = [
+  {
+    src: "/anh1.jpeg",
+    alt: "Ảnh 1",
+    caption: "Buổi dã ngoại ở Đà Lạt",
+    date: "2024-05-01",
+  },
+  {
+    src: "/anh2.jpeg",
+    alt: "Ảnh 2",
+    caption: "Team building Vũng Tàu",
+    date: "2024-05-15",
+  },
+  {
+    src: "/anh3.jpeg",
+    alt: "Ảnh 3",
+    date: "2024-05-20",
+  },
+  {
+    src: "/anh4.jpeg",
+    alt: "Ảnh 3",
+    date: "2024-05-20",
+  },
+  {
+    src: "/anh5.jpeg",
+    alt: "Ảnh 3",
+    date: "2024-05-20",
+  },
+];
+
+export default function LifeAlbum() {
   return (
-    <section id="timeline" className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-semibold text-center mb-12">Our Love Story</h2>
-        <div className="relative">
-          {timelineEvents.map((event, index) => (
-            <div
-              key={index}
-              className={`flex flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row-reverse" : ""} items-center mb-8`}
-            >
-              <div className="w-full md:w-1/2 px-4 mb-4 md:mb-0">
-                <div className={`bg-gray-100 rounded-lg p-4 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
-                  <h3 className="text-xl font-semibold mb-2">{event.title}</h3>
-                  <p className="text-gray-600 mb-2">{event.date}</p>
-                  <p>{event.description}</p>
-                </div>
+    <div className={"p-4 " + merriweather.className}>
+      <h2 className="text-3xl font-semibold text-center mb-8 my-3">
+        Những Khoảnh Khắc Đã Qua
+      </h2>
+      <LightGallery
+        speed={500}
+        plugins={[lgThumbnail, lgZoom]}
+        elementClassNames="grid grid-cols-2 md:grid-cols-4 gap-4"
+      >
+        {photos.map((photo, index) => (
+          <a
+            key={index}
+            href={photo.src}
+            data-sub-html={`
+              <h4>${photo.caption || "Không có chú thích"}</h4>
+              <p>Ngày chụp: ${photo.date}</p>
+            `}
+            className="group relative block overflow-hidden rounded shadow"
+          >
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              width={300}
+              height={200}
+              className="transform hover:scale-105 transition duration-300"
+            />
+            {photo.caption && (
+              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-sm p-2 opacity-0 group-hover:opacity-100 transition">
+                {photo.caption}
               </div>
-              <div className="w-full md:w-1/2 flex justify-center">
-                <Image
-                  src={event.image || "/placeholder.svg"}
-                  alt={event.title}
-                  width={200}
-                  height={200}
-                  className="rounded-full border-4 border-white shadow-lg"
-                />
-              </div>
-            </div>
-          ))}
-          <div className="absolute h-full w-1 bg-gray-300 left-1/2 transform -translate-x-1/2 top-0 hidden md:block"></div>
-        </div>
-      </div>
-    </section>
-  )
+            )}
+          </a>
+        ))}
+      </LightGallery>
+    </div>
+  );
 }
-

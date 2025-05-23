@@ -1,8 +1,15 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Quicksand } from "next/font/google";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+
+const quicksand = Quicksand({
+  subsets: ["vietnamese"],
+  weight: "600",
+  variable: "--font-quicksand",
+});
 
 const photos = [
   "/TINK2000.JPG?height=600&width=800",
@@ -66,15 +73,13 @@ export default function PhotoAlbum() {
   }, [isFullscreen, nextPhoto, prevPhoto, toggleFullscreen]);
 
   return (
-    <section id="photos" className="py-16 bg-white">
+    <section id="photos" className={"py-16 bg-white " + quicksand.className}>
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-semibold text-center mb-8">
-          Our Photo Album
-        </h2>
+        <h2 className="text-3xl font-semibold text-center mb-8">Ảnh Cưới</h2>
         <div className="relative max-w-3xl mx-auto">
           <Image
             src={photos[currentPhoto] || "/placeholder.svg"}
-            alt={`Photo ${currentPhoto + 1}`}
+            alt={`Ảnh ${currentPhoto + 1}`}
             width={800}
             height={600}
             className="rounded-lg shadow-lg cursor-pointer"
@@ -94,7 +99,7 @@ export default function PhotoAlbum() {
           </button>
         </div>
         <p className="text-center mt-4 text-gray-600">
-          Photo {currentPhoto + 1} of {photos.length}
+          Ảnh {currentPhoto + 1} / {photos.length}
         </p>
       </div>
       {isFullscreen && (
@@ -107,7 +112,7 @@ export default function PhotoAlbum() {
         >
           <Image
             src={photos[currentPhoto] || "/placeholder.svg"}
-            alt={`Photo ${currentPhoto + 1}`}
+            alt={`Ảnh ${currentPhoto + 1}`}
             layout="fill"
             objectFit="contain"
           />
@@ -130,7 +135,7 @@ export default function PhotoAlbum() {
             <X className="w-8 h-8 text-gray-800" />
           </button>
           <p className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-lg">
-            Photo {currentPhoto + 1} of {photos.length}
+            Ảnh {currentPhoto + 1} / {photos.length}
           </p>
         </div>
       )}

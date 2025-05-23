@@ -1,11 +1,21 @@
 import { Calendar, Clock, MapPin } from "lucide-react";
+import { Merriweather } from "next/font/google";
+
+const merriweather = Merriweather({
+  subsets: ["vietnamese"],
+  weight: "400",
+});
 
 export default function Schedule() {
   return (
-    <section id="schedule" className="py-16 bg-gray-100">
+    <section
+      id="schedule"
+      className={"py-16" + " " + merriweather.className}
+      style={{ backgroundColor: "#FAEEEE" }}
+    >
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-semibold text-center mb-12">
-          Wedding Schedule
+          Ngày Vui Của Chúng Mình
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-white rounded-lg shadow-md p-6">
@@ -24,7 +34,7 @@ export default function Schedule() {
             </div>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-2xl font-semibold mb-4">Lễ thành hôn</h3>
+            <h3 className="text-2xl font-semibold mb-4">Lễ Thành Hôn</h3>
             <div className="flex items-center mb-2">
               <MapPin className="w-5 h-5 mr-2 text-gray-600" />
               <p>
@@ -49,12 +59,12 @@ export default function Schedule() {
             </a>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-2xl font-semibold mb-4">Tiệc Báo Hỉ</h3>
+            <h3 className="text-2xl font-semibold mb-4">Tiệc Báo Hỷ</h3>
             <div className="flex items-center mb-2">
               <MapPin className="w-5 h-5 mr-2 text-gray-600" />
               <p>
-                Sảnh Queen 2 - Nhà hàng tiệc cưới Queen Plaza, 91B2 Phạm Văn
-                Hai, Phường 3, Tân Bình, Hồ Chí Minh
+                Sảnh Queen 2 - Nhà hàng tiệc cưới Queen Plaza <br /> 91B2 Phạm
+                Văn Hai, Phường 3, Tân Bình, Hồ Chí Minh
               </p>
             </div>
             <div className="flex items-center mb-2">

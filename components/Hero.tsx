@@ -3,10 +3,19 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import { Great_Vibes, Playfair_Display } from "next/font/google";
+import { Dancing_Script, Quicksand } from "next/font/google";
 
-const greatVibes = Great_Vibes({ subsets: ["vietnamese"], weight: "400" });
-const playfair = Playfair_Display({ subsets: ["vietnamese"], weight: "400" });
+const quicksand = Quicksand({
+  subsets: ["vietnamese"],
+  weight: "600",
+  variable: "--font-quicksand",
+});
+
+const dancingScript = Dancing_Script({
+  subsets: ["vietnamese"],
+  weight: "400",
+  variable: "--font-dancing-script",
+});
 
 interface TimeLeft {
   [key: string]: number;
@@ -42,34 +51,40 @@ export default function Hero() {
   return (
     <section className="relative h-screen">
       <Image
-        src="/TINK2045-width.JPG?height=1080&width=1920"
+        src="/TINK2121-width.jpg?height=1080&width=1920"
         alt="Couple"
         layout="fill"
         objectFit="cover"
         className="z-0"
       />
       <div className="absolute inset-0 bg-black bg-opacity-50 z-10" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-20 px-4">
-        <div className={greatVibes.className}>
+      <div
+        className="absolute inset-0 flex flex-col items-center justify-center text-white z-20 px-4 pt-4"
+        style={{ marginTop: "300px" }}
+      >
+        <div className={dancingScript.className}>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 text-center">
             Đình Trung & Ngọc Trân
           </h1>
         </div>
-        <p className="text-xl sm:text-2xl md:text-3xl text-center">
-          Chúng mình sẽ cưới nhau
-        </p>
-        <p className="text-lg sm:text-xl md:text-2xl mt-4 text-center">
-          12 Tháng bảy, 2025
-        </p>
-        <div className="mt-8 flex space-x-4">
-          {Object.entries(timeLeft).map(([unit, value]) => (
-            <div key={unit} className="text-center">
-              <div className="text-2xl sm:text-3xl md:text-4xl font-bold">
-                {value}
+        <div className={quicksand.className}>
+          <p className="text-xl sm:text-2xl md:text-3xl text-center">
+            Sắp về chung một nhà
+          </p>
+          <p className="text-lg sm:text-xl md:text-2xl mt-4 text-center">
+            Ngày 12 Tháng 07 Năm 2025
+          </p>
+
+          <div className="mt-8 flex space-x-4 justify-center">
+            {Object.entries(timeLeft).map(([unit, value]) => (
+              <div key={unit} className="text-center">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold">
+                  {value}
+                </div>
+                <div className="text-xs sm:text-sm uppercase">{unit}</div>
               </div>
-              <div className="text-xs sm:text-sm uppercase">{unit}</div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
