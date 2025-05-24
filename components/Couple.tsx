@@ -53,7 +53,7 @@ export default function Couple() {
           </div>
           <div>
             <Image
-              src="/TINK2005.JPG?height=300&width=300"
+              src="/TINK2005.jpg?height=300&width=300"
               alt="Bride"
               width={300}
               height={300}
