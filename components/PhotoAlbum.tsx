@@ -1,144 +1,67 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { Quicksand } from "next/font/google";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import LightGallery from "lightgallery/react";
 
-const quicksand = Quicksand({
+// Plugins
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
+
+// Styles (rất quan trọng)
+import "lightgallery/css/lg-thumbnail.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lightgallery.css";
+import { Merriweather } from "next/font/google";
+import Image from "next/image";
+
+const merriweather = Merriweather({
   subsets: ["vietnamese"],
-  weight: "600",
-  variable: "--font-quicksand",
+  weight: "400",
 });
 
 const photos = [
-  "/TINK2000.JPG?height=600&width=800",
-  "/TINK2023.JPG?height=600&width=800",
-  "/TINK2045.JPG?height=600&width=800",
-  "/TINK2179.JPG?height=600&width=800",
-  "/TINK2258.JPG?height=600&width=800",
-  "/TINK2336.JPG?height=600&width=800",
+  // "/TINK2077.jpg?height=600&width=800",
+  // "/TINK2005.jpg?height=600&width=800",
+  "/TINK2070.jpg?height=600&width=800",
+  "/TINK2091.jpg?height=600&width=800",
+  // "/TINK2121.jpg?height=600&width=800",
+  // "/TINK2139.jpg?height=600&width=800",
+  "/TINK2167.jpg?height=600&width=800",
+  // "/TINK2179.jpg?height=600&width=800",
+  // "/TINK2190.jpg?height=600&width=800",
+  "/TINK2251.jpg?height=600&width=800",
+  "/TINK2291.jpg?height=600&width=800",
+  "/TINK2329.jpg?height=600&width=800",
 ];
 
 export default function PhotoAlbum() {
-  const [currentPhoto, setCurrentPhoto] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-  const fullscreenRef = useRef(null);
-
-  const nextPhoto = () => {
-    setCurrentPhoto((prev) => (prev + 1) % photos.length);
-  };
-
-  const prevPhoto = () => {
-    setCurrentPhoto((prev) => (prev - 1 + photos.length) % photos.length);
-  };
-
-  const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
-  };
-
-  const handleTouchStart = (e) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-    if (isLeftSwipe) {
-      nextPhoto();
-    }
-    if (isRightSwipe) {
-      prevPhoto();
-    }
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (isFullscreen) {
-        if (e.key === "ArrowRight") nextPhoto();
-        if (e.key === "ArrowLeft") prevPhoto();
-        if (e.key === "Escape") toggleFullscreen();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isFullscreen, nextPhoto, prevPhoto, toggleFullscreen]);
-
   return (
-    <section id="photos" className={"py-16 bg-white " + quicksand.className}>
+    <section id="photos" className={"py-16 bg-white " + merriweather.className}>
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-semibold text-center mb-8">Ảnh Cưới</h2>
-        <div className="relative max-w-3xl mx-auto">
-          <Image
-            src={photos[currentPhoto] || "/placeholder.svg"}
-            alt={`Ảnh ${currentPhoto + 1}`}
-            width={800}
-            height={600}
-            className="rounded-lg shadow-lg cursor-pointer"
-            onClick={toggleFullscreen}
-          />
-          <button
-            onClick={prevPhoto}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all"
-          >
-            <ChevronLeft className="w-6 h-6 text-gray-800" />
-          </button>
-          <button
-            onClick={nextPhoto}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all"
-          >
-            <ChevronRight className="w-6 h-6 text-gray-800" />
-          </button>
-        </div>
-        <p className="text-center mt-4 text-gray-600">
-          Ảnh {currentPhoto + 1} / {photos.length}
-        </p>
-      </div>
-      {isFullscreen && (
-        <div
-          ref={fullscreenRef}
-          className="fixed inset-0 bg-black z-50 flex items-center justify-center"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
+        <h2 className="text-3xl font-semibold text-center mb-8">
+          Album sống ảo chính thức
+        </h2>
+        <LightGallery
+          speed={500}
+          plugins={[lgThumbnail, lgZoom]}
+          elementClassNames="grid grid-cols-2 md:grid-cols-3 gap-4"
         >
-          <Image
-            src={photos[currentPhoto] || "/placeholder.svg"}
-            alt={`Ảnh ${currentPhoto + 1}`}
-            layout="fill"
-            objectFit="contain"
-          />
-          <button
-            onClick={prevPhoto}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all"
-          >
-            <ChevronLeft className="w-8 h-8 text-gray-800" />
-          </button>
-          <button
-            onClick={nextPhoto}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all"
-          >
-            <ChevronRight className="w-8 h-8 text-gray-800" />
-          </button>
-          <button
-            onClick={toggleFullscreen}
-            className="absolute top-4 right-4 bg-white bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all"
-          >
-            <X className="w-8 h-8 text-gray-800" />
-          </button>
-          <p className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-lg">
-            Ảnh {currentPhoto + 1} / {photos.length}
-          </p>
-        </div>
-      )}
+          {photos.map((photo, index) => (
+            <a
+              key={index}
+              href={photo}
+              className="group relative block overflow-hidden rounded shadow"
+            >
+              <Image
+                src={photo}
+                alt={photo}
+                width={300}
+                height={200}
+                className="transform hover:scale-105 transition duration-300 items-center justify-center mx-auto"
+              />
+            </a>
+          ))}
+        </LightGallery>
+      </div>
     </section>
   );
 }

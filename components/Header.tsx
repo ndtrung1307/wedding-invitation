@@ -71,15 +71,6 @@ export default function Header() {
           </li>
           <li>
             <Link
-              href="#timeline"
-              className="block py-2 md:py-0 text-gray-600 hover:text-gray-800"
-              onClick={toggleMenu}
-            >
-              Lịch Trình
-            </Link>
-          </li>
-          <li>
-            <Link
               href="#wishes"
               className="block py-2 md:py-0 text-gray-600 hover:text-gray-800"
               onClick={toggleMenu}

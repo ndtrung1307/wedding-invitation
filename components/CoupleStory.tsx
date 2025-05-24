@@ -1,22 +1,21 @@
-import { Quicksand } from "next/font/google";
+import { Merriweather } from "next/font/google";
 
-const quicksand = Quicksand({
+const merriweather = Merriweather({
   subsets: ["vietnamese"],
-  weight: "600",
-  variable: "--font-quicksand",
+  weight: "400",
 });
 
 export default function CoupleStory() {
   return (
     <section
       id="story"
-      className={"py-16 bg-white" + " " + quicksand.className}
+      className={"py-16 bg-white" + " " + merriweather.className}
     >
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-semibold text-center mb-8">
           Tụi mình - Một hành trình
         </h2>
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-justify">
           <p className="text-gray-700 mb-4">
             Tụi mình quen nhau vì nhà trai lỡ… rep story. Không ngờ từ một cái
             rep vu vơ mà nên chuyện thật. Sau đó, ảnh tỏ tình đúng 30 Tết – chắc

@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Merriweather } from "next/font/google";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import WishesList from "./WishesList";
 
 const merriweather = Merriweather({
@@ -37,17 +38,17 @@ export default function WishesForm() {
 
       const data = await res.json();
       console.log("Wish submitted successfully:", data);
-      alert("Lời chúc của bạn đã được gửi thành công!");
+      toast.success("Lời chúc của bạn đã được gửi thành công!");
     } catch (error) {
       console.error("Error submitting the wish:", error);
-      alert("Có lỗi xảy ra khi gởi lời chúc. Vui lòng thử lại!");
+      toast.error("Có lỗi xảy ra khi gởi lời chúc. Vui lòng thử lại!");
     }
 
     // Reset form fields
     setSenderName("");
     setRelationship("");
     setMessage("");
-    alert("Chúng mình cảm ơn lời chúc phúc của bạn!");
+    toast.success("Chúng mình cảm ơn lời chúc phúc của bạn!");
   };
 
   return (
@@ -58,7 +59,7 @@ export default function WishesForm() {
     >
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-semibold text-center mb-8">
-          Gởi lời chúc đến tụi mình!
+          Nhắn nhủ gì đó cho tụi mình
         </h2>
         <form onSubmit={handleSubmit} className="max-w-md mx-auto">
           <div className="mb-4">
@@ -90,7 +91,7 @@ export default function WishesForm() {
           </div>
           <div className="mb-4">
             <label htmlFor="message" className="block mb-2">
-              Lời chúc của bạn:
+              Lời nhắn của bạn:
             </label>
             <Textarea
               id="message"
@@ -116,7 +117,7 @@ export default function WishesForm() {
 
         <div className="mt-8">
           <h3 className="text-2xl font-semibold text-center mb-4">
-            Sổ Lưu Bút
+            Tụi Mình Đọc Hết Nè!
           </h3>
           <WishesList />
         </div>

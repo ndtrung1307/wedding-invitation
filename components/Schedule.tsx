@@ -17,7 +17,7 @@ export default function Schedule() {
         <h2 className="text-3xl font-semibold text-center mb-12">
           Ngày Vui Của Chúng Mình
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-2xl font-semibold mb-4">Lễ Vu Quy</h3>
             <div className="flex items-center mb-2">

@@ -1,18 +1,15 @@
 import Image from "next/image";
 
-import { Dancing_Script, Playfair_Display, Quicksand } from "next/font/google";
+import { Corinthia, Merriweather } from "next/font/google";
 
-const playfair = Playfair_Display({ subsets: ["vietnamese"], weight: "400" });
-const dancingScript = Dancing_Script({
+const corinthia = Corinthia({
   subsets: ["vietnamese"],
   weight: "400",
-  variable: "--font-dancing-script",
+  variable: "--font-imperial-script",
 });
-
-const quicksand = Quicksand({
+const merriweather = Merriweather({
   subsets: ["vietnamese"],
-  weight: "600",
-  variable: "--font-quicksand",
+  weight: "400",
 });
 
 export default function Couple() {
@@ -23,28 +20,24 @@ export default function Couple() {
       style={{ backgroundColor: "#FAEEEE", color: "#45384B" }}
     >
       <div className="container mx-auto px-4">
-        <h2
-          className={
-            "text-3xl font-semibold text-center mb-12 " + quicksand.className
-          }
-        >
-          Cô dâu - Chú rể
-        </h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div>
             <Image
-              src="/TINK2179.JPG?height=300&width=300"
+              src="/TINK2179-min.jpg?height=300&width=300"
               alt="Groom"
               width={300}
               height={300}
               className="rounded-full mx-auto mb-4"
             />
+            <h3 className={`text-2xl mb-2 text-center ${corinthia.className}`}>
+              Chú Rể
+            </h3>
             <h3
-              className={`text-5xl font-semibold mb-2 text-center ${dancingScript.className}`}
+              className={`text-5xl font-semibold mb-2 text-center ${corinthia.className}`}
             >
               Nguyễn Đình Trung
             </h3>
-            <p className={`text-left ${playfair.className}`}>
+            <p className={`text-justify ${merriweather.className}`}>
               “Cảm ơn em.
               <br />
               Cảm ơn em đã không unfriend anh từ lần rep story đầu tiên.
@@ -60,18 +53,21 @@ export default function Couple() {
           </div>
           <div>
             <Image
-              src="/TINK2000.JPG?height=300&width=300"
+              src="/TINK2005.JPG?height=300&width=300"
               alt="Bride"
               width={300}
               height={300}
               className="rounded-full mx-auto mb-4"
             />
+            <h3 className={`text-2xl mb-2 text-center ${corinthia.className}`}>
+              Cô Dâu
+            </h3>
             <h3
-              className={`text-5xl font-semibold mb-2 text-center ${dancingScript.className}`}
+              className={`text-5xl font-semibold mb-2 text-center ${corinthia.className}`}
             >
               Lê Ngọc Trân
             </h3>
-            <p className={`italic text-left ${playfair.className}`}>
+            <p className={`italic text-justify ${merriweather.className}`}>
               “Cảm ơn anh
               <br />
               Cảm ơn anh vì đã rep story… đúng lúc.

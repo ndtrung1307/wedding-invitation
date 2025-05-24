@@ -54,7 +54,7 @@ export default function WishesList() {
     <div className={"p-4" + " " + merriweather.className}>
       {/* Hiển thị trên điện thoại */}
       <div className="block md:hidden">
-        {wishes.length > 0 && (
+        {wishes.length > 0 ? (
           <div className="bg-white rounded-xl shadow-md p-6 text-center">
             <p className="text-xl font-semibold text-blue-700">
               {wishes[currentIndex].senderName}
@@ -71,16 +71,20 @@ export default function WishesList() {
                 onClick={prev}
                 className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
               >
-                <ArrowLeft className="w-4 h-4 inline-block" /> Trước
+                <ArrowLeft className="w-4 h-4 inline-block" />
               </button>
               <button
                 onClick={next}
                 className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
               >
-                Sau <ArrowRight className="w-4 h-4 inline-block" />
+                <ArrowRight className="w-4 h-4 inline-block" />
               </button>
             </div>
           </div>
+        ) : (
+          <h2 className="text-center text-gray-500 mt-4">
+            Chưa có lời chúc nào được gửi đến chúng mình.
+          </h2>
         )}
       </div>
 

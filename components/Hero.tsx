@@ -3,18 +3,17 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import { Dancing_Script, Quicksand } from "next/font/google";
+import { Corinthia, Merriweather } from "next/font/google";
 
-const quicksand = Quicksand({
-  subsets: ["vietnamese"],
-  weight: "600",
-  variable: "--font-quicksand",
-});
-
-const dancingScript = Dancing_Script({
+const merriweather = Merriweather({
   subsets: ["vietnamese"],
   weight: "400",
-  variable: "--font-dancing-script",
+});
+
+const corinthia = Corinthia({
+  subsets: ["vietnamese"],
+  weight: "400",
+  variable: "--font-imperial-script",
 });
 
 interface TimeLeft {
@@ -62,16 +61,16 @@ export default function Hero() {
         className="absolute inset-0 flex flex-col items-center justify-center text-white z-20 px-4 pt-4"
         style={{ marginTop: "300px" }}
       >
-        <div className={dancingScript.className}>
+        <div className={corinthia.className}>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 text-center">
             Đình Trung & Ngọc Trân
           </h1>
         </div>
-        <div className={quicksand.className}>
+        <div className={merriweather.className + " mt-4"}>
           <p className="text-xl sm:text-2xl md:text-3xl text-center">
             Sắp về chung một nhà
           </p>
-          <p className="text-lg sm:text-xl md:text-2xl mt-4 text-center">
+          <p className="text-lg sm:text-xs md:text-xl mt-4 text-center">
             Ngày 12 Tháng 07 Năm 2025
           </p>
 
