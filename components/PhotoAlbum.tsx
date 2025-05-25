@@ -46,7 +46,7 @@ export default function PhotoAlbum() {
             >
               <Image
                 src={photo}
-                alt={photo}
+                alt={`Ảnh ${index + 1}`}
                 width={300}
                 height={200}
                 className="transform hover:scale-105 transition duration-300 items-center justify-center mx-auto"

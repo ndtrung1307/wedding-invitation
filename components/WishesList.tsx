@@ -46,9 +46,10 @@ export default function WishesList() {
     return <p className="p-4 text-gray-500">Đang tải lời chúc...</p>;
   }
 
-  const next = () => setCurrentIndex((i) => (i + 1) % wishes.length);
-  const prev = () =>
-    setCurrentIndex((i) => (i - 1 + wishes.length) % wishes.length);
+  const next = (numberItems: number) =>
+    setCurrentIndex((i) => (i + numberItems) % wishes.length);
+  const prev = (numberItems: number) =>
+    setCurrentIndex((i) => (i - numberItems + wishes.length) % wishes.length);
 
   return (
     <div className={"p-4" + " " + merriweather.className}>
@@ -66,15 +67,19 @@ export default function WishesList() {
               “{wishes[currentIndex].message}”
             </p>
 
+            <p className="col-span-full text-center text-gray-500 mt-4">
+              {currentIndex + 1} / {wishes.length}
+            </p>
+
             <div className="flex justify-between mt-6">
               <button
-                onClick={prev}
+                onClick={() => prev(1)}
                 className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
               >
                 <ArrowLeft className="w-4 h-4 inline-block" />
               </button>
               <button
-                onClick={next}
+                onClick={() => next(1)}
                 className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
               >
                 <ArrowRight className="w-4 h-4 inline-block" />
@@ -90,22 +95,43 @@ export default function WishesList() {
 
       {/* Hiển thị trên desktop */}
       <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-4">
-        {wishes.map((wish, index) => (
-          <div
-            key={index}
-            className="bg-white shadow-lg rounded-xl p-6 border border-gray-100"
+        <div className="col-span-full flex justify-between items-center mb-4">
+          <button
+            onClick={() => prev(3)}
+            className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 flex items-center"
           >
-            <div className="text-xl font-semibold text-blue-700">
-              {wish.senderName}
+            <ArrowLeft className="w-4 h-4 inline-block mr-2" />
+            Trước
+          </button>
+          <button
+            onClick={() => next(3)}
+            className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 flex items-center"
+          >
+            Tiếp
+            <ArrowRight className="w-4 h-4 inline-block ml-2" />
+          </button>
+        </div>
+        {wishes
+          .slice(currentIndex, currentIndex + 3)
+          .map((wish: Wish, index: number) => (
+            <div
+              key={index}
+              className="bg-white shadow-lg rounded-xl p-6 border border-gray-100"
+            >
+              <div className="text-xl font-semibold text-blue-700">
+                {wish.senderName}
+              </div>
+              <div className="text-sm text-gray-500 mb-2 italic">
+                ({wish.relationship})
+              </div>
+              <div className="text-gray-800 mt-2 leading-relaxed break-words overflow-hidden text-ellipsis">
+                “{wish.message}”
+              </div>
             </div>
-            <div className="text-sm text-gray-500 mb-2 italic">
-              ({wish.relationship})
-            </div>
-            <div className="text-gray-800 mt-2 leading-relaxed break-words overflow-hidden text-ellipsis">
-              “{wish.message}”
-            </div>
-          </div>
-        ))}
+          ))}
+        <p className="col-span-full text-center text-gray-500 mt-4">
+          {currentIndex + 1}-{currentIndex + 3} / {wishes.length}
+        </p>
       </div>
     </div>
   );

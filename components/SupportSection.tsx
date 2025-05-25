@@ -25,7 +25,7 @@ export default function SupportSection() {
 
       {showQR && (
         <div className="mt-6 flex justify-center items-center gap-8 px-8">
-          <div className="w-1/2">
+          <div className="w-1/2 md:w-1/6 items-center flex flex-col">
             <img
               src="/qr-cr.png"
               alt="QR Chú rể"
@@ -33,7 +33,7 @@ export default function SupportSection() {
             />
             <p className="mt-1 text-xs text-gray-500">Nguyễn Đình Trung</p>
           </div>
-          <div className="w-1/2">
+          <div className="w-1/2 md:w-1/6 items-center flex flex-col">
             <img
               src="/qr-cd.png"
               alt="QR Cô dâu"
