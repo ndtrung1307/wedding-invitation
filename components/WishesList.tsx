@@ -47,9 +47,19 @@ export default function WishesList() {
   }
 
   const next = (numberItems: number) =>
-    setCurrentIndex((i) => (i + numberItems) % wishes.length);
+    setCurrentIndex((i) => {
+      if (i + numberItems >= wishes.length) {
+        return 0;
+      }
+      return (i + numberItems) % wishes.length;
+    });
   const prev = (numberItems: number) =>
-    setCurrentIndex((i) => (i - numberItems + wishes.length) % wishes.length);
+    setCurrentIndex((i) => {
+      if (i - numberItems < 0) {
+        return wishes.length - (wishes.length % numberItems);
+      }
+      return (i - numberItems + wishes.length) % wishes.length;
+    });
 
   return (
     <div className={"p-4" + " " + merriweather.className}>
@@ -130,7 +140,9 @@ export default function WishesList() {
             </div>
           ))}
         <p className="col-span-full text-center text-gray-500 mt-4">
-          {currentIndex + 1}-{currentIndex + 3} / {wishes.length}
+          {currentIndex + 1}-
+          {currentIndex + 3 > wishes.length ? wishes.length : currentIndex + 3}{" "}
+          / {wishes.length}
         </p>
       </div>
     </div>
