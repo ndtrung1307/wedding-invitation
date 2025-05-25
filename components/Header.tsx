@@ -19,7 +19,7 @@ export default function Header() {
   return (
     <header
       className="shadow-sm fixed top-0 left-0 right-0 z-50"
-      style={{ backgroundColor: "#fdfcf6" }}
+      style={{ backgroundColor: "rgba(253, 252, 246, 0.5)" }}
     >
       <nav className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/">

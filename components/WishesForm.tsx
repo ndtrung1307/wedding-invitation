@@ -58,7 +58,7 @@ export default function WishesForm() {
       style={{ backgroundColor: "#FAEEEE", color: "#45384B" }}
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-semibold text-center mb-8">
+        <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-8">
           Nhắn nhủ gì đó cho tụi mình
         </h2>
         <form onSubmit={handleSubmit} className="max-w-md mx-auto">

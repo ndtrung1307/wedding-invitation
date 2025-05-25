@@ -70,7 +70,7 @@ export default function Hero() {
           <p className="text-xl sm:text-2xl md:text-3xl text-center">
             Sắp về chung một nhà
           </p>
-          <p className="text-lg sm:text-xs md:text-xl mt-4 text-center">
+          <p className="text-sm sm:text-xs md:text-xl mt-4 text-center">
             Ngày 12 Tháng 07 Năm 2025
           </p>
 

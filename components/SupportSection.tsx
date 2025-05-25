@@ -6,8 +6,13 @@ export default function SupportSection() {
   const [showQR, setShowQR] = useState(false);
 
   return (
-    <section className="mt-10 text-center text-sm text-gray-600">
-      <p className="mb-4">Cảm ơn bạn đã đến chung vui cùng tụi mình 💖</p>
+    <section
+      className="py-4 text-center text-sm text-gray-600"
+      style={{ backgroundColor: "#FAEEEE" }}
+    >
+      <p className="mb-4 text-lg">
+        Cảm ơn bạn đã đến chung vui cùng tụi mình 💖
+      </p>
 
       <button
         onClick={() => setShowQR(!showQR)}
@@ -22,19 +27,19 @@ export default function SupportSection() {
         <div className="mt-6 grid md:grid-cols-2 md:flex-row justify-center items-center gap-8">
           <div>
             <img
-              src="/qr-cd.png"
-              alt="QR Cô dâu"
-              className="w-32 h-40 rounded-md shadow-md"
+              src="/qr-cr.png"
+              alt="QR Chú rể"
+              className="w-44 h-54 rounded-md shadow-md"
             />
-            <p className="mt-1 text-xs text-gray-500">Lê Ngọc Trân</p>
+            <p className="mt-1 text-xs text-gray-500">Nguyễn Đình Trung</p>
           </div>
           <div>
             <img
-              src="/qr-cr.png"
-              alt="QR Chú rể"
-              className="w-32 h-40 rounded-md shadow-md"
+              src="/qr-cd.png"
+              alt="QR Cô dâu"
+              className="w-44 h-54 rounded-md shadow-md"
             />
-            <p className="mt-1 text-xs text-gray-500">Nguyễn Đình Trung</p>
+            <p className="mt-1 text-xs text-gray-500">Lê Ngọc Trân</p>
           </div>
         </div>
       )}
