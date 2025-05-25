@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import { Corinthia, Merriweather } from "next/font/google";
+import Header from "./Header";
 
 const merriweather = Merriweather({
   subsets: ["vietnamese"],
@@ -49,20 +50,22 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen">
+      <Header />
       <Image
         src="/TINK2121-width.jpg?height=1080&width=1920"
         alt="Couple"
         layout="fill"
         objectFit="cover"
         className="z-0"
+        style={{ objectPosition: "center bottom" }}
       />
       <div className="absolute inset-0 bg-black bg-opacity-50 z-10" />
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center text-white z-20 px-4 pt-4"
-        style={{ marginTop: "300px" }}
+        className="absolute inset-0 flex flex-col items-center justify-end text-white z-20"
+        style={{ bottom: "20px" }}
       >
         <div className={corinthia.className}>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 text-center">
+          <h1 className="text-5xl sm:text-5xl md:text-7xl font-bold mb-4 text-center">
             Đình Trung & Ngọc Trân
           </h1>
         </div>
@@ -74,7 +77,7 @@ export default function Hero() {
             Ngày 12 Tháng 07 Năm 2025
           </p>
 
-          <div className="mt-8 flex space-x-4 justify-center">
+          <div className="mb-16 flex space-x-4 justify-center">
             {Object.entries(timeLeft).map(([unit, value]) => (
               <div key={unit} className="text-center">
                 <div className="text-2xl sm:text-3xl md:text-4xl font-bold">

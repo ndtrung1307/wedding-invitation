@@ -1,7 +1,6 @@
 import Couple from "@/components/Couple";
 import CoupleStory from "@/components/CoupleStory";
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import PhotoAlbum from "@/components/PhotoAlbum";
 import RSVPButton from "@/components/RSVPButton";
@@ -12,7 +11,6 @@ import WishesForm from "@/components/WishesForm";
 export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50">
-      <Header />
       <Hero />
       <CoupleStory />
       <Couple />

@@ -6,7 +6,6 @@ import LightGallery from "lightgallery/react";
 import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgZoom from "lightgallery/plugins/zoom";
 
-// Styles (rất quan trọng)
 import "lightgallery/css/lg-thumbnail.css";
 import "lightgallery/css/lg-zoom.css";
 import "lightgallery/css/lightgallery.css";
@@ -19,15 +18,9 @@ const merriweather = Merriweather({
 });
 
 const photos = [
-  // "/TINK2077.jpg?height=600&width=800",
-  // "/TINK2005.jpg?height=600&width=800",
   "/TINK2070.jpg?height=600&width=800",
   "/TINK2091.jpg?height=600&width=800",
-  // "/TINK2121.jpg?height=600&width=800",
-  // "/TINK2139.jpg?height=600&width=800",
   "/TINK2167.jpg?height=600&width=800",
-  // "/TINK2179.jpg?height=600&width=800",
-  // "/TINK2190.jpg?height=600&width=800",
   "/TINK2251.jpg?height=600&width=800",
   "/TINK2291.jpg?height=600&width=800",
   "/TINK2329.jpg?height=600&width=800",

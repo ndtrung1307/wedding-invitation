@@ -17,10 +17,7 @@ export default function Header() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header
-      className="shadow-sm fixed top-0 left-0 right-0 z-50"
-      style={{ backgroundColor: "rgba(253, 252, 246, 0.5)" }}
-    >
+    <header className="shadow-sm top-0 left-0 right-0 z-50">
       <nav className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/">
           <img src="/wedding-logo.png" alt="" style={{ height: "100px" }} />
@@ -31,12 +28,13 @@ export default function Header() {
         <ul
           className={`${isMenuOpen ? "flex" : "hidden"} ${
             cormorantGaramond.className
-          } md:flex flex-col md:flex-row absolute md:relative top-full left-0 right-0 bg-white md:bg-transparent shadow-md md:shadow-none md:space-x-4 p-4 md:p-0`}
+          } md:flex flex-col md:flex-row absolute md:relative top-full left-0 right-0 bg-white md:bg-transparent shadow-md md:shadow-none md:space-x-4 p-4 md:p-0 text-white`}
+          style={{ zIndex: 1000 }}
         >
           <li>
             <Link
               href="#story"
-              className="block py-2 md:py-0 text-gray-600 hover:text-gray-800"
+              className="block py-2 md:py-0 hover:text-gray-800"
               onClick={toggleMenu}
             >
               Về Chúng Mình
@@ -45,7 +43,7 @@ export default function Header() {
           <li>
             <Link
               href="#couple"
-              className="block py-2 md:py-0 text-gray-600 hover:text-gray-800"
+              className="block py-2 md:py-0 hover:text-gray-800"
               onClick={toggleMenu}
             >
               Cô Dâu & Chú Rể
@@ -54,7 +52,7 @@ export default function Header() {
           <li>
             <Link
               href="#photos"
-              className="block py-2 md:py-0 text-gray-600 hover:text-gray-800"
+              className="block py-2 md:py-0 hover:text-gray-800"
               onClick={toggleMenu}
             >
               Ảnh Cưới
@@ -63,7 +61,7 @@ export default function Header() {
           <li>
             <Link
               href="#schedule"
-              className="block py-2 md:py-0 text-gray-600 hover:text-gray-800"
+              className="block py-2 md:py-0 hover:text-gray-800"
               onClick={toggleMenu}
             >
               Ngày Cưới
@@ -72,7 +70,7 @@ export default function Header() {
           <li>
             <Link
               href="#wishes"
-              className="block py-2 md:py-0 text-gray-600 hover:text-gray-800"
+              className="block py-2 md:py-0 hover:text-gray-800"
               onClick={toggleMenu}
             >
               Gởi lời chúc
