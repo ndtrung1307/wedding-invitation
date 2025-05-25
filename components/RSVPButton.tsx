@@ -167,19 +167,19 @@ export default function RSVPButton() {
                   <option value="">-- Chọn 1 --</option>
                   <option
                     className="text-lg"
-                    value="Tiệc nhà gái - 10/06 tại Long An"
+                    value="Tiệc nhà gái - 28,29/06 tại Vĩnh Long"
                   >
                     Tiệc nhà gái - 28,29/06 tại Vĩnh Long
                   </option>
                   <option
                     className="text-lg"
-                    value="Tiệc nhà trai - 15/06 tại TP.HCM"
+                    value="Tiệc nhà trai - 06/07 tại Quảng Nam"
                   >
                     Tiệc nhà trai - 06/07 tại Quảng Nam
                   </option>
                   <option
                     className="text-lg"
-                    value="Tiệc Báo Hỷ - 20/06 tại Đà Lạt"
+                    value="Tiệc Báo Hỷ - 12/07 tại TP.HCM"
                   >
                     Tiệc Báo Hỷ - 12/07 tại TP.HCM
                   </option>
