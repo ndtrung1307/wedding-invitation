@@ -97,14 +97,14 @@ export default function WishesForm() {
               id="message"
               value={message}
               onChange={(e) => {
-                if (e.target.value.length <= 300) {
+                if (e.target.value.length <= 800) {
                   setMessage(e.target.value);
                 }
               }}
               required
               placeholder="Chúc tụi mình hạnh phúc, vui vẻ, sức khỏe, thành công..."
             />
-            <p className="text-sm mt-1">{message.length}/300 ký tự</p>
+            <p className="text-sm mt-1">{message.length}/800 ký tự</p>
           </div>
           <Button
             type="submit"
