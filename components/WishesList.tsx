@@ -56,7 +56,9 @@ export default function WishesList() {
   const prev = (numberItems: number) =>
     setCurrentIndex((i) => {
       if (i - numberItems < 0) {
-        return wishes.length - (wishes.length % numberItems);
+        return wishes.length % numberItems === 0
+          ? wishes.length - numberItems
+          : wishes.length - (wishes.length % numberItems);
       }
       return (i - numberItems + wishes.length) % wishes.length;
     });
