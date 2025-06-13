@@ -43,7 +43,7 @@ export default function Schedule() {
             </div>
             <div className="flex items-center mb-2">
               <Calendar className="w-5 h-5 mr-2 text-gray-600" />
-              <p>06 Tháng 07, 2025</p>
+              <p>04 Tháng 07, 2025</p>
             </div>
             <div className="flex items-center mb-4">
               <Clock className="w-5 h-5 mr-2 text-gray-600" />
