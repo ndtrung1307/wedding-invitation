@@ -175,7 +175,7 @@ export default function RSVPButton() {
                     className="text-lg"
                     value="Tiệc nhà trai - 06/07 tại Quảng Nam"
                   >
-                    Tiệc nhà trai - 06/07 tại Quảng Nam
+                    Tiệc nhà trai - 04/07 tại Quảng Nam
                   </option>
                   <option
                     className="text-lg"
