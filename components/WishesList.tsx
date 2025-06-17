@@ -2,7 +2,7 @@
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Merriweather } from "next/font/google";
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 
 type Wish = {
   senderName: string;
@@ -15,13 +15,18 @@ const merriweather = Merriweather({
   weight: "400",
 });
 
-export default function WishesList() {
+const WishesList = forwardRef((props, ref) => {
   const [wishes, setWishes] = useState<Wish[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const [loading, setLoading] = useState(true);
-
   const [reload, setReload] = useState(false);
+
+  useImperativeHandle(ref, () => ({
+    triggerReload: () => {
+      setLoading(true);
+      setReload((prev) => !prev);
+    },
+  }));
 
   useEffect(() => {
     // Thay URL bằng API thực tế của bạn
@@ -36,11 +41,6 @@ export default function WishesList() {
         setLoading(false);
       });
   }, [reload]);
-
-  const triggerReload = () => {
-    setLoading(true);
-    setReload((prev) => !prev);
-  };
 
   if (loading) {
     return <p className="p-4 text-gray-500">Đang tải lời chúc...</p>;
@@ -149,4 +149,6 @@ export default function WishesList() {
       </div>
     </div>
   );
-}
+});
+
+export default WishesList;

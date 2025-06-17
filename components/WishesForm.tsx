@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Merriweather } from "next/font/google";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import WishesList from "./WishesList";
 
@@ -19,6 +19,7 @@ export default function WishesForm() {
   const [senderName, setSenderName] = useState("");
   const [relationship, setRelationship] = useState("");
   const [message, setMessage] = useState("");
+  const wishesListRef = useRef<{ triggerReload: () => void }>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,16 +40,18 @@ export default function WishesForm() {
       const data = await res.json();
       console.log("Wish submitted successfully:", data);
       toast.success("Lời chúc của bạn đã được gửi thành công!");
+
+      // Reset form fields
+      setSenderName("");
+      setRelationship("");
+      setMessage("");
+
+      // Trigger reload of wishes list
+      wishesListRef.current?.triggerReload();
     } catch (error) {
       console.error("Error submitting the wish:", error);
       toast.error("Có lỗi xảy ra khi gởi lời chúc. Vui lòng thử lại!");
     }
-
-    // Reset form fields
-    setSenderName("");
-    setRelationship("");
-    setMessage("");
-    toast.success("Chúng mình cảm ơn lời chúc phúc của bạn!");
   };
 
   return (
@@ -119,7 +122,7 @@ export default function WishesForm() {
           <h3 className="text-2xl font-semibold text-center mb-4">
             Tụi Mình Đọc Hết Nè!
           </h3>
-          <WishesList />
+          <WishesList ref={wishesListRef} />
         </div>
       </div>
     </section>
