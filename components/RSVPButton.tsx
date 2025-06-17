@@ -19,14 +19,14 @@ interface IAttendee {
 
 export default function RSVPButton() {
   const [isOpen, setIsOpen] = useState(false);
-  const [willAttend, setWillAttend] = useState(false);
+  const [willAttend, setWillAttend] = useState("");
   const [name, setName] = useState("");
   const [relationship, setRelationship] = useState("");
   const [guests, setGuests] = useState(1);
   const [selectedParty, setSelectedParty] = useState("");
 
   const handleSubmit = async () => {
-    if (!name || !relationship) {
+    if (!name || !relationship || willAttend === "") {
       toast.error("Vui lòng điền đầy đủ thông tin.");
       return;
     }
@@ -37,10 +37,10 @@ export default function RSVPButton() {
       let payload: IAttendee = {
         name,
         relationship,
-        willAttend,
+        willAttend: willAttend === "true",
       };
 
-      if (willAttend) {
+      if (willAttend === "true") {
         if (!guests) {
           toast.error("Vui lòng nhập số người sẽ đi cùng.");
           return;
@@ -76,7 +76,7 @@ export default function RSVPButton() {
     }
 
     setIsOpen(false);
-    setWillAttend(false);
+    setWillAttend("");
     setName("");
     setRelationship("");
     setGuests(1);
@@ -130,20 +130,24 @@ export default function RSVPButton() {
               className="w-full px-3 py-2 mb-4 border rounded-md"
               placeholder="Bạn cấp 3, bạn đại học, đồng nghiệp, người thân..."
             />
+            <label className="block mb-2 text-sm">
+              Bạn sẽ tham dự tiệc cưới của chúng mình?
+            </label>
             <div className="flex items-center mb-4">
-              <input
-                type="checkbox"
-                id="willAttend"
-                checked={willAttend}
-                onChange={(e) => setWillAttend(e.target.checked)}
-                className="mr-2"
-              />
-              <label htmlFor="willAttend" className="text-sm">
-                Tôi sẽ tham dự
-              </label>
+              <select
+                onChange={(e) => setWillAttend(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md"
+                defaultValue={""}
+              >
+                <option disabled value="">
+                  Lựa chọn để xác nhận tham dự
+                </option>
+                <option value="true">Tôi sẽ tham dự</option>
+                <option value="false">Tôi không thể tham dự</option>
+              </select>
             </div>
 
-            {willAttend && (
+            {willAttend === "true" && (
               <>
                 <label className="block mb-2 text-sm">
                   Số người sẽ tham dự
@@ -164,7 +168,9 @@ export default function RSVPButton() {
                   onChange={(e) => setSelectedParty(e.target.value)}
                   className="w-full px-3 py-2 mb-4 border rounded-md"
                 >
-                  <option value="">-- Chọn 1 --</option>
+                  <option disabled value="">
+                    -- Chọn 1 --
+                  </option>
                   <option
                     className="text-lg"
                     value="Tiệc nhà gái - 28,29/06 tại Vĩnh Long"
