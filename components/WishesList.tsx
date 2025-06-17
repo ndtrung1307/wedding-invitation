@@ -25,6 +25,7 @@ const WishesList = forwardRef((props, ref) => {
     triggerReload: () => {
       setLoading(true);
       setReload((prev) => !prev);
+      setCurrentIndex(0);
     },
   }));
 
