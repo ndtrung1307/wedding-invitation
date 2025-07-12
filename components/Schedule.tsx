@@ -19,7 +19,9 @@ export default function Schedule() {
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-2xl font-semibold mb-4">Lễ Vu Quy</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-center">
+              Lễ Vu Quy
+            </h3>
             <div className="flex items-center mb-2">
               <MapPin className="w-5 h-5 mr-2 text-gray-600" />
               <p>Tư gia nữ - Hựu Thành, Trà Ôn, Vĩnh Long</p>
@@ -34,7 +36,9 @@ export default function Schedule() {
             </div>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-2xl font-semibold mb-4">Lễ Thành Hôn</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-center">
+              Lễ Thành Hôn
+            </h3>
             <div className="flex items-center mb-2">
               <MapPin className="w-5 h-5 mr-2 text-gray-600" />
               <p>
@@ -59,7 +63,9 @@ export default function Schedule() {
             </a>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-2xl font-semibold mb-4">Tiệc Báo Hỷ</h3>
+            <h3 className="text-2xl font-semibold mb-4 text-center">
+              Tiệc Báo Hỷ
+            </h3>
             <div className="flex items-center mb-2">
               <MapPin className="w-5 h-5 mr-2 text-gray-600" />
               <p>
