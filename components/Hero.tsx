@@ -22,7 +22,7 @@ interface TimeLeft {
 }
 
 const calculateTimeLeft = () => {
-  const difference = +new Date("2025-07-12") - +new Date();
+  const difference = +new Date("2025-07-12T18:00:00+07:00") - +new Date();
   let timeLeft: TimeLeft = {};
 
   if (difference > 0) {
@@ -31,6 +31,13 @@ const calculateTimeLeft = () => {
       Giờ: Math.floor((difference / (1000 * 60 * 60)) % 24),
       Phút: Math.floor((difference / 1000 / 60) % 60),
       Giây: Math.floor((difference / 1000) % 60),
+    };
+  } else {
+    timeLeft = {
+      Ngày: 0,
+      Giờ: 0,
+      Phút: 0,
+      Giây: 0,
     };
   }
 
@@ -74,7 +81,7 @@ export default function Hero() {
             Sắp về chung một nhà
           </p>
           <p className="text-sm sm:text-xs md:text-xl mt-4 text-center">
-            Ngày 12 Tháng 07 Năm 2025
+            18:00 - Ngày 12 Tháng 07 Năm 2025
           </p>
 
           <div className="mb-16 flex space-x-4 justify-center">
